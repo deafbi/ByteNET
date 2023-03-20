@@ -30,6 +30,12 @@ a vulnerable input or use in a js injection.
 
 ![alt text](https://github.com/fazelastblood/ByteNET/raw/main/repo/payload.PNG)
 
-#!Disclaimer!
+# How To Setup
+Run the run.py file choose a username and password then run main.py and navigate to http://127.0.0.1:5000/
+Which takes you to a login enter you credentials and then go to payloads you can paste this in anyother tabs 
+console or go to the testing html file and open that in a new tab live it will show a new bot has connected
+and you can experiment.. Happy Hacking 
+
+# !Disclaimer!
 <h2>This is ment for educational purposes only and when you change the code to adapt with public IP 
 addresses and use it for malicios purposes that is on the person using it and not on me. Please use wisely.</h2>
