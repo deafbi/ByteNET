@@ -1,4 +1,4 @@
-const ServerUrl = "http://127.0.0.1:5000";
+const ServerUrl = "http://192.168.0.16:5000";
 var script = document.createElement('script');
 script.src = ServerUrl + '/static/js/html2canvas.js';
 document.head.appendChild(script);

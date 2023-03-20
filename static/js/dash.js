@@ -50,25 +50,32 @@ function cst(seconds) {
   return time;
 }
 
+var botnum = 0;
+
 function updateElement() {
   fetch('/bots')
     .then(response => response.json())
     .then(data => {
-      // Extract all the keys from the response
       const keys = Object.keys(data);
-
-      // Append the keys as option elements to the select element
-      const select = document.querySelector('.atkinput2');
-      select.innerHTML = ''; // Clear the options before adding the new ones
-      for (const key of keys) {
-        const option = document.createElement('option');
-        option.value = key;
-        option.textContent = key;
-        select.appendChild(option);
+      if (botnum != keys.length) {
+        const select = document.querySelector('.atkinput2');
+        select.innerHTML = '';
+        for (const key of keys) {
+          const option = document.createElement('option');
+          option.value = key;
+          option.textContent = key;
+          select.appendChild(option);
+        }
+        botnum = keys.length;
+      } else {
+        return;
       }
     })
     .catch(error => console.error(error));
 }
+
+
+
 
 function updateDashboard() {
   fetch('/bots')
@@ -76,8 +83,8 @@ function updateDashboard() {
     .then(data => {
       const botList = document.querySelector('.bot-list');
       const botNames = Object.keys(data);
-      
-      botNames.forEach(botName => {
+        botslist = botNames;
+        botNames.forEach(botName => {
         let botData = data[botName];
         let botRow = document.querySelector(`.bot-list [data-bot-name="${botName}"]`);
         if (!botRow) {
@@ -87,22 +94,22 @@ function updateDashboard() {
           botList.appendChild(botRow);
         }
         botRow.innerHTML = `
-        <div class="bottfixx">
-          <a href="/result/${botName}">
-            <div class="bot-info">
-              <div class="bot-name">${botName}</div>
-              <div class="bot-ip">IP: ${botData.ip}</div>
-              <div class="bot-browser">Browser: ${botData.browser}</div>
-              <div class="bot-hsp">HSP: ${botData.hsp}</div>
-              <div class="bot-from">From: ${botData.from}</div>
-              <div class="bot-hash">Hash: ${botData.ch}</div>
-              <div class="bot-last-seen">Last Seen: ${cst(botData.last_heartbeat)}</div>
-            </div>
-          </a>
-        </div>
-        `;
+          <div class="bottfixx">
+            <a href="/result/${botName}">
+              <div class="bot-info">
+                <div class="bot-name">${botName}</div>
+                <div class="bot-ip">IP: ${botData.ip}</div>
+                <div class="bot-browser">Browser: ${botData.browser}</div>
+                <div class="bot-hsp">HSP: ${botData.hsp}</div>
+                <div class="bot-from">From: ${botData.from}</div>
+                <div class="bot-hash">Hash: ${botData.ch}</div>
+                <div class="bot-last-seen">Last Seen: ${cst(botData.last_heartbeat)}</div>
+              </div>
+            </a>
+          </div>
+          `;
       });      
-
+  
       // Remove any extra bot rows if there are more rows than bot names
       const botRows = document.querySelectorAll('.bot-list__bot');
       if (botRows.length > botNames.length) {
@@ -110,6 +117,8 @@ function updateDashboard() {
           botRows[i].remove();
         }
       }
+      
+      
     })
     .catch(error => console.error(error));
     initMap();

