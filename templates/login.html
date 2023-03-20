@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+{% block content %}
+  <div class="pagecenter">
+    <div class="login-container">
+      <div class="login-form">
+        <h1 class="logo">ByteNET</h1>
+        <h2 class="login-header">Log in to ByteNet</h2>
+        <form method="POST">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+          <input type="submit" value="Log In">
+        </form>
+      </div>
+      <div class="slogan">
+        <p>The ultimate JavaScript botnet platform.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

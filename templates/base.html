@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ip_locations') }}">IP Locations</a></li>
+        <li><a href="{{ url_for('get_bots') }}">Bots</a></li>
+        {% if logged_in %}
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <div class="content">
+      {% block content %} {% endblock %}
+    </div>
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>

