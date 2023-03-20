@@ -127,7 +127,7 @@ body {
   
   .prompt {
     display: inline-block;
-    width: auto;
+    width: 150px;
     font-weight: bold;
     margin-right: 5px;
   }
@@ -141,7 +141,7 @@ body {
     font-family: monospace;
     font-size: 16px;
     line-height: 1.5;
-    width: auto;
+    width: calc(100% - 141px);
   }
   
   .input-container {
@@ -155,6 +155,7 @@ body {
     align-items: center;
     padding: 0 10px;
   }
+  
   
   .input-container:hover {
     background-color: #383838;
