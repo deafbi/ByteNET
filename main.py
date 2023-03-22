@@ -9,7 +9,7 @@ import requests
 from geopy.geocoders import Nominatim
 import json
 
-public = True
+public = False
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here' # add a secret key for session management
