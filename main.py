@@ -28,7 +28,7 @@ else:
 def load_config():
     with open("config.json", "r") as f:
         config = json.load(f)
-    return config
+    return config 
 
 def get_users(config):
     users = load_config()
