@@ -37,4 +37,4 @@ The attack panel provides a range of options for attacking targeted machines, in
 The reverse shell provides a popup shell for direct connection into the bot. This can be useful for direct interaction with the bot and executing custom commands.
 
 Credits
-This project was created by Matt. If you have any questions or suggestions, please contact me.
+This project was created by Matt. If you have any questions or suggestions, please contact me ghostbytenet@protonmail.com.
