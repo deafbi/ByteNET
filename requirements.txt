@@ -1,3 +1,4 @@
 Flask==2.1.0
 Flask-Cors==3.0.10
 geopy==2.2.0
+werkzeug>=3.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
